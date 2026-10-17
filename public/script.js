@@ -1,152 +1,138 @@
 
 "use strict";
 
-// ==========================================
+// ========================================
 // RAÍZES DA NOSSA HISTÓRIA — CEPG
-// VERSÃO ORIGINAL — SEM CONTINENTES ILUMINADOS
-// ==========================================
+// MAPA COM SOBRENOMES REAIS DA TURMA
+// ========================================
 
-// Países da turma com bolinhas clicáveis.
-// Raízes e fios verdes animados.
-// Pesquisa de sobrenome pelo Netlify.
-// Animação compacta com raízes e globo.
+// Coloque sua chave somente no seu computador.
+// Atenção: no GitHub Pages ela ficará pública.
+const GEMINI_API_KEY = "AQ.Ab8RN6Kd54qd2kFLByPfIgdU2l-CS3sVkDDoldeWJM6Mju7mNQ";
+const GEMINI_MODEL = "gemini-3.5-flash-lite";
 
-// ==========================================
-// 1. ORIGENS DA TURMA
-// ==========================================
+// ========================================
+// 1. SOBRENOMES INFORMADOS PELA TURMA
+// ========================================
 
 const familias = [
   {
-    pais: "Brasil",
-    codigo: "BR",
-    x: 31,
-    y: 67,
+    pais: "Portugal",
+    codigo: "PT",
+    bandeira: "🇵🇹",
+    x: 45.6,
+    y: 38,
+    quantidade: 12,
     descricao:
-      "Origens em São Paulo, Minas Gerais, Pernambuco, Paraíba, Bahia e Paraná, além de cidades como Boituva, Sorocaba, Porto Feliz, Tatuí, Laranjal Paulista, Arcos e outras.",
+      "Sobrenomes associados a Portugal conforme as informações enviadas pelos alunos. Silva e Rodrigues apareceram duas vezes. Rodrigues e Domingues também foram associados à Espanha.",
     localidades: [
-      "São Paulo",
-      "Minas Gerais",
-      "Pernambuco",
-      "Paraíba",
-      "Bahia",
-      "Paraná",
-      "Boituva",
-      "Sorocaba",
-      "Porto Feliz",
-      "Tatuí",
-      "Laranjal Paulista",
-      "Arcos",
-      "Outras localidades"
+      "Rodrigues (2 registros)",
+      "Silva (2 registros)",
+      "Gouvêa",
+      "Lopes",
+      "Queiroz",
+      "Araújo",
+      "Santos",
+      "Chagas",
+      "Marques",
+      "Domingues"
     ]
   },
   {
     pais: "Itália",
     codigo: "IT",
+    bandeira: "🇮🇹",
     x: 52,
     y: 40,
+    quantidade: 6,
     descricao:
-      "Registros familiares de Treviso, Calábria, Alberobello e outras regiões italianas.",
+      "Sobrenomes associados à Itália conforme as informações enviadas pelos alunos.",
     localidades: [
-      "Treviso",
-      "Calábria",
-      "Alberobello",
-      "Outras regiões"
-    ]
-  },
-  {
-    pais: "Portugal",
-    codigo: "PT",
-    x: 46.5,
-    y: 39,
-    descricao:
-      "Registros familiares de diferentes localidades portuguesas.",
-    localidades: [
-      "Diferentes localidades portuguesas"
-    ]
-  },
-  {
-    pais: "Síria",
-    codigo: "SY",
-    x: 59.5,
-    y: 46,
-    descricao:
-      "Um registro de origem familiar foi informado inicialmente.",
-    localidades: [
-      "1 registro informado inicialmente"
-    ]
-  },
-  {
-    pais: "Líbano",
-    codigo: "LB",
-    x: 59,
-    y: 48,
-    descricao:
-      "Origem familiar ligada ao Líbano identificada no estudo.",
-    localidades: [
-      "Origem familiar identificada"
+      "Trevisan",
+      "Basso",
+      "Gueriero",
+      "Giannotti",
+      "Garpelli",
+      "Favoretti"
     ]
   },
   {
     pais: "Espanha",
     codigo: "ES",
-    x: 47,
-    y: 42,
+    bandeira: "🇪🇸",
+    x: 47.3,
+    y: 42.5,
+    quantidade: 5,
     descricao:
-      "Origem familiar ligada à Espanha identificada no estudo.",
+      "Sobrenomes associados à Espanha conforme as respostas da turma. A associação de Henrique à Espanha é provisória, aguardando confirmação com o aluno.",
     localidades: [
-      "Origem familiar identificada"
-    ]
-  },
-  {
-    pais: "Países Baixos (Holanda)",
-    codigo: "NL",
-    x: 50,
-    y: 34,
-    descricao:
-      "Origem familiar ligada à Holanda (Países Baixos) identificada no estudo.",
-    localidades: [
-      "Origem familiar identificada"
+      "Rodrigues",
+      "Amaro",
+      "Estevan",
+      "Domingues",
+      "Henrique "
     ]
   },
   {
     pais: "Alemanha",
     codigo: "DE",
+    bandeira: "🇩🇪",
     x: 51.6,
-    y: 36,
+    y: 35,
+    quantidade: 1,
     descricao:
-      "Origem familiar ligada à Alemanha identificada no estudo.",
+      "Ramalho foi associado provisoriamente à Alemanha conforme a interpretação da resposta enviada pelo aluno. Essa informação ainda precisa ser confirmada.",
     localidades: [
-      "Origem familiar identificada"
+      "Ramalho"
     ]
   },
   {
     pais: "Hungria",
     codigo: "HU",
+    bandeira: "🇭🇺",
     x: 55.3,
     y: 39,
+    quantidade: 1,
     descricao:
-      "Um registro de origem familiar ligado à Hungria foi informado.",
-    localidades: [
-      "1 registro informado"
-    ]
+      "Origem informada pelo aluno para o sobrenome Benko.",
+    localidades: ["Benko"]
   },
   {
-    pais: "Bessarábia / Moldávia",
-    codigo: "MD",
-    x: 58.3,
-    y: 39,
+    pais: "Líbano",
+    codigo: "LB",
+    bandeira: "🇱🇧",
+    x: 59,
+    y: 48,
+    quantidade: 1,
     descricao:
-      "Uma trajetória familiar ligada à Bessarábia foi descrita. Trata-se de uma região histórica hoje dividida principalmente entre Moldávia e Ucrânia.",
-    localidades: [
-      "1 trajetória familiar descrita",
-      "Região histórica da Bessarábia"
-    ]
+      "Origem informada pelo aluno para o sobrenome Sawaya.",
+    localidades: ["Sawaya"]
+  },
+  {
+    pais: "França",
+    codigo: "FR",
+    bandeira: "🇫🇷",
+    x: 49,
+    y: 37,
+    quantidade: 1,
+    descricao:
+      "Origem informada pelo aluno para o sobrenome Prouvot.",
+    localidades: ["Prouvot"]
+  },
+  {
+    pais: "Romênia",
+    codigo: "RO",
+    bandeira: "🇷🇴",
+    x: 58,
+    y: 41,
+    quantidade: 1,
+    descricao:
+      "Origem informada pelo aluno para o sobrenome Kiocia.",
+    localidades: ["Kiocia"]
   }
 ];
 
-// ==========================================
-// 2. PAÍSES DISPONÍVEIS NA PESQUISA
-// ==========================================
+// Países disponíveis na pesquisa com Gemini.
 
 const paises = {
   BR: ["Brasil", 31, 67],
@@ -208,9 +194,9 @@ const paises = {
   MY: ["Malásia", 79, 65]
 };
 
-// ==========================================
-// 3. ELEMENTOS DO SITE
-// ==========================================
+// ========================================
+// 2. ELEMENTOS E FUNÇÕES BÁSICAS
+// ========================================
 
 const $ = id => document.getElementById(id);
 
@@ -221,7 +207,6 @@ const rootsSvg = $("rootsSvg");
 
 const mapStage = $("mapStage");
 const mapSvg = $("mapSvg");
-
 const countryPins = $("countryPins");
 const familyNames = $("familyNames");
 const searchMarker = $("searchMarker");
@@ -236,9 +221,7 @@ const menuToggle = $("menuToggle");
 const navMenu = $("navMenu");
 
 const NS = "http://www.w3.org/2000/svg";
-
 const mobile = matchMedia("(max-width: 620px)");
-
 const reducedMotion = matchMedia(
   "(prefers-reduced-motion: reduce)"
 );
@@ -248,7 +231,6 @@ const clamp = (v, min, max) =>
 
 function make(tag, className = "", value) {
   const element = document.createElement(tag);
-
   element.className = className;
 
   if (value !== undefined) {
@@ -268,10 +250,6 @@ const normalize = text =>
     .toLowerCase()
     .trim();
 
-// ==========================================
-// 4. VARIÁVEIS
-// ==========================================
-
 let familyVisuals = [];
 let paths = [];
 let selectedFamily = 0;
@@ -286,19 +264,19 @@ let activeController = null;
 let rebuildQueued = false;
 let animationQueued = false;
 
-// ==========================================
-// 5. TEXTOS ORIGINAIS DO MAPA
-// ==========================================
+// ========================================
+// 3. TEXTOS DO MAPA
+// ========================================
 
 $("mapHint").textContent =
-  "Selecione um país no mapa ou nos botões abaixo para conhecer as origens da turma.";
+  "✦ CLIQUE NOS PONTOS VERDES DO MAPA ou escolha um dos 8 países abaixo para descobrir os sobrenomes dos alunos. ↓";
 
 const avisoOriginal = $("familyPanel")
   .querySelector(".demo-notice");
 
 if (avisoOriginal) {
   avisoOriginal.textContent =
-    "As origens e localidades foram informadas no levantamento da turma. Os pontos no mapa são aproximados e não representam endereços familiares.";
+    "Países e sobrenomes conforme as respostas dos alunos. Uma mesma grafia pode aparecer em mais de um país. Henrique → Espanha e Ramalho → Alemanha são associações provisórias. Os pontos no mapa são aproximados.";
 }
 
 $("familyPanel")
@@ -306,9 +284,12 @@ $("familyPanel")
   .forEach(element => {
     const text = element.textContent.trim();
 
-    if (text === "SOBRENOMES") {
+    if (
+      text === "LOCALIDADES E REGISTROS" ||
+      text === "SOBRENOMES"
+    ) {
       element.textContent =
-        "LOCALIDADES E REGISTROS";
+        "SOBRENOMES INFORMADOS";
     }
 
     if (text === "PAÍS SELECIONADO") {
@@ -317,132 +298,255 @@ $("familyPanel")
     }
   });
 
-// ==========================================
-// 6. ESTILOS DISCRETOS DO MAPA
-// ==========================================
+// ========================================
+// 4. ESTILOS DO MAPA E DA INTERAÇÃO
+// ========================================
 
 const style = make("style");
 
 style.textContent = `
+.cepg-origin-focus{
+  position:absolute;
+  right:13px;
+  bottom:13px;
+  z-index:8;
+  width:min(260px,46%);
+  padding:11px 13px;
+  border:1px solid rgba(220,250,184,.35);
+  border-radius:11px;
+  background:rgba(8,30,49,.92);
+  color:#f3fee4;
+  box-shadow:0 8px 22px rgba(0,0,0,.22);
+  pointer-events:none;
+}
 
-  .cepg-origin-focus {
-    position: absolute;
-    right: 13px;
-    bottom: 13px;
-    z-index: 8;
+.cepg-origin-focus strong{
+  display:block;
+  font-size:12px;
+  line-height:1.4;
+  overflow-wrap:anywhere;
+}
 
-    width: min(260px, 46%);
-    padding: 11px 13px;
+.cepg-origin-focus span{
+  display:block;
+  margin-top:4px;
+  font-size:9px;
+  color:#c6dfa9;
+}
 
-    border: 1px solid rgba(220,250,184,.35);
-    border-radius: 11px;
+.map-stage.searching .cepg-origin-focus{
+  display:none;
+}
 
-    background: rgba(8,30,49,.92);
-    color: #f3fee4;
+.cepg-mobile-legend{
+  display:none;
+}
 
-    box-shadow: 0 8px 22px rgba(0,0,0,.22);
+/* INSTRUÇÃO DENTRO DO MAPA */
 
-    pointer-events: none;
+.cepg-click-guide{
+  position:absolute;
+  z-index:9;
+  left:15px;
+  top:15px;
+  background:rgba(7,30,48,.94);
+  color:#eaffc7;
+  border:1px solid rgba(203,241,163,.52);
+  border-radius:999px;
+  padding:10px 14px;
+  font:800 10px/1.4 Manrope,sans-serif;
+  letter-spacing:.45px;
+  pointer-events:none;
+  box-shadow:0 6px 22px #061b2e7a;
+}
+
+.map-stage.searching .cepg-click-guide{
+  display:none;
+}
+
+/* PONTOS VERDES ANIMADOS */
+
+.map-stage:not(.searching) .country-pin{
+  cursor:pointer;
+  animation:cepgPinPulse 2.2s ease-in-out infinite;
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+
+.map-stage:not(.searching) .country-pin:hover,
+.map-stage:not(.searching) .country-pin:focus-visible{
+  transform:translate(-50%,-50%) scale(1.4);
+  box-shadow:
+    0 0 0 8px #d5ff9655,
+    0 0 24px #d5ff96;
+}
+
+@keyframes cepgPinPulse{
+  0%,100%{
+    box-shadow:
+      0 0 0 4px #d4ffa829,
+      0 0 12px #c5fb8b7a;
+  }
+  50%{
+    box-shadow:
+      0 0 0 8px #d4ffa812,
+      0 0 24px #d5ffb1c4;
+  }
+}
+
+/* TÍTULO ACIMA DOS BOTÕES */
+
+.cepg-pick-heading{
+  text-align:center;
+  margin-bottom:15px;
+}
+
+.cepg-pick-heading strong{
+  display:block;
+  font:800 15px/1.5 Manrope,sans-serif;
+  color:#244838;
+}
+
+.cepg-pick-heading small{
+  display:block;
+  font:600 11px/1.5 Manrope,sans-serif;
+  color:#617876;
+  margin-top:3px;
+}
+
+.country-button{
+  cursor:pointer;
+  transition:transform .2s ease;
+}
+
+.country-button:hover{
+  transform:translateY(-2px);
+}
+
+.map-hint{
+  font-size:13px!important;
+  line-height:1.7!important;
+  font-weight:700;
+}
+
+@media(max-width:620px){
+
+  .cepg-origin-focus{
+    display:none;
   }
 
-  .cepg-origin-focus strong {
-    display: block;
-    font-size: 12px;
-    line-height: 1.4;
-    overflow-wrap: anywhere;
+  .cepg-click-guide{
+    left:8px;
+    top:7px;
+    max-width:80%;
+    padding:7px 9px;
+    font-size:8px;
   }
 
-  .cepg-origin-focus span {
-    display: block;
-    margin-top: 4px;
-    font-size: 9px;
-    color: #c6dfa9;
+  .map-stage:not(.searching)
+  .cepg-mobile-legend{
+    position:absolute;
+    z-index:12;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:7px;
+    bottom:7px;
+    left:8px;
+    right:8px;
+    padding:7px 8px;
+    border-radius:10px;
+    border:1px solid rgba(224,250,183,.3);
+    background:rgba(8,32,53,.93);
+    color:#e9f9d1;
+    font:700 9px/1.3 Manrope,sans-serif;
   }
 
-  .map-stage.searching .cepg-origin-focus {
-    display: none;
+  .cepg-mobile-legend button{
+    border:1px solid #cfe7a7;
+    border-radius:6px;
+    background:#f6fbea;
+    color:#18334a;
+    padding:5px;
+    font:800 9px Manrope,sans-serif;
+    max-width:100px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
   }
 
-  .cepg-mobile-legend {
-    display: none;
+  .country-pin{
+    min-width:22px;
+    min-height:22px;
   }
 
-  @media (max-width: 620px) {
-
-    .cepg-origin-focus {
-      display: none;
-    }
-
-    .map-stage:not(.searching)
-    .cepg-mobile-legend {
-      position: absolute;
-      z-index: 12;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      gap: 7px;
-
-      bottom: 7px;
-      left: 8px;
-      right: 8px;
-
-      padding: 7px 8px;
-
-      border-radius: 10px;
-      border: 1px solid rgba(224,250,183,.3);
-
-      background: rgba(8,32,53,.93);
-      color: #e9f9d1;
-
-      font: 700 9px/1.3 Manrope, sans-serif;
-    }
-
-    .cepg-mobile-legend button {
-      border: 1px solid #cfe7a7;
-      border-radius: 6px;
-
-      background: #f6fbea;
-      color: #18334a;
-
-      padding: 5px;
-
-      font: 800 9px Manrope, sans-serif;
-
-      max-width: 100px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+  .cepg-pick-heading strong{
+    font-size:13px;
   }
 
+  .map-hint{
+    font-size:11px!important;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .map-stage:not(.searching) .country-pin{
+    animation:none;
+  }
+}
 `;
 
 document.head.append(style);
 
-// ==========================================
-// 7. LEGENDA DO CELULAR
-// ==========================================
+// ========================================
+// 5. ELEMENTOS DE ORIENTAÇÃO
+// ========================================
 
 const mobileLegend = make(
   "div",
   "cepg-mobile-legend"
 );
 
-mapStage.append(mobileLegend);
-
 const focus = make(
   "div",
   "cepg-origin-focus"
 );
 
-focus.setAttribute(
-  "aria-live",
-  "polite"
+focus.setAttribute("aria-live", "polite");
+
+mapStage.append(mobileLegend, focus);
+
+const clickGuide = make(
+  "div",
+  "cepg-click-guide",
+  "✦ TOQUE NOS PONTOS VERDES"
 );
 
-mapStage.append(focus);
+mapStage.append(clickGuide);
+
+const pickHeading = make(
+  "div",
+  "cepg-pick-heading"
+);
+
+pickHeading.innerHTML = `
+  <strong>
+    👇 Escolha um país e conheça os sobrenomes
+  </strong>
+  <small>
+    Você também pode tocar nos pontos verdes do mapa.
+  </small>
+`;
+
+$("countryButtons").before(pickHeading);
+
+function scrollToFamilyPanel() {
+  $("familyPanel").scrollIntoView({
+    behavior: reducedMotion.matches
+      ? "auto"
+      : "smooth",
+    block: "start"
+  });
+}
 
 function updateMobileLegend(index) {
   const family = familias[index];
@@ -451,56 +555,46 @@ function updateMobileLegend(index) {
     make(
       "span",
       "",
-      `${index + 1}/${familias.length} · ${family.pais}`
+      `${family.bandeira} ${family.pais}`
     )
   );
 
-  family.localidades
-    .slice(0, 2)
-    .forEach(local => {
-      const button = make(
-        "button",
-        "",
-        local
-      );
+  family.localidades.slice(0, 2).forEach(local => {
+    const button = make("button", "", local);
+    button.type = "button";
 
-      button.type = "button";
+    button.addEventListener(
+      "click",
+      scrollToFamilyPanel
+    );
 
-      button.addEventListener("click", () => {
-        $("familyPanel").scrollIntoView({
-          behavior: reducedMotion.matches
-            ? "auto"
-            : "smooth",
-          block: "center"
-        });
-      });
-
-      mobileLegend.append(button);
-    });
+    mobileLegend.append(button);
+  });
 
   if (family.localidades.length > 2) {
+    const remaining =
+      family.localidades.length - 2;
+
     const more = make(
       "button",
       "",
-      `+${family.localidades.length - 2}`
+      `+${remaining}`
     );
 
     more.type = "button";
 
-    more.addEventListener("click", () => {
-      $("familyPanel").scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-    });
+    more.addEventListener(
+      "click",
+      scrollToFamilyPanel
+    );
 
     mobileLegend.append(more);
   }
 }
 
-// ==========================================
-// 8. CURVAS DOS FIOS
-// ==========================================
+// ========================================
+// 6. LINHAS E MARCADORES DO MAPA
+// ========================================
 
 function curve(a, b) {
   const dx = b.x - a.x;
@@ -566,10 +660,6 @@ function addPath(
   }
 }
 
-// ==========================================
-// 9. MARCADORES DOS PAÍSES
-// ==========================================
-
 function buildMarkers() {
   countryPins.replaceChildren();
   familyNames.replaceChildren();
@@ -577,6 +667,7 @@ function buildMarkers() {
 
   familyVisuals = familias.map(
     (family, index) => {
+
       const pin = make(
         "button",
         "country-pin"
@@ -587,11 +678,11 @@ function buildMarkers() {
       pin.style.left = `${family.x}%`;
       pin.style.top = `${family.y}%`;
 
-      pin.title = family.pais;
+      pin.title = `Ver sobrenomes de ${family.pais}`;
 
       pin.setAttribute(
         "aria-label",
-        `Ver origem: ${family.pais}`
+        `Ver sobrenomes de ${family.pais}`
       );
 
       pin.setAttribute(
@@ -599,16 +690,20 @@ function buildMarkers() {
         "false"
       );
 
+      // Ao clicar no mapa, mostrar o painel.
+
       pin.addEventListener("click", () => {
-        selectFamily(index);
+        selectFamily(index, true);
       });
 
       countryPins.append(pin);
 
+      // Botão com bandeira e quantidade.
+
       const button = make(
         "button",
         "country-button",
-        family.pais
+        `${family.bandeira} ${family.pais} · ${family.quantidade}`
       );
 
       button.type = "button";
@@ -624,29 +719,24 @@ function buildMarkers() {
 
       $("countryButtons").append(button);
 
-      return {
-        pin,
-        button
-      };
+      return { pin, button };
     }
   );
 }
 
-// ==========================================
-// 10. SELECIONAR PAÍS
-// ==========================================
+// ========================================
+// 7. SELEÇÃO DE PAÍSES
+// ========================================
 
-function selectFamily(index) {
-  if (!familias[index]) {
-    return;
-  }
+function selectFamily(index, reveal = false) {
+  if (!familias[index]) return;
 
   selectedFamily = index;
 
   const family = familias[index];
 
   $("selectedCountry").textContent =
-    family.pais;
+    `${family.bandeira} ${family.pais}`;
 
   $("selectedDescription").textContent =
     family.descricao;
@@ -657,6 +747,13 @@ function selectFamily(index) {
     )
   );
 
+  const totalLabel =
+    `${family.quantidade} registro${
+      family.quantidade === 1 ? "" : "s"
+    } informado${
+      family.quantidade === 1 ? "" : "s"
+    }`;
+
   focus.replaceChildren(
     make(
       "strong",
@@ -666,7 +763,7 @@ function selectFamily(index) {
     make(
       "span",
       "",
-      "Origem informada no levantamento da turma"
+      totalLabel
     )
   );
 
@@ -704,11 +801,21 @@ function selectFamily(index) {
   });
 
   updateMobileLegend(index);
+
+  // O painel aparece automaticamente
+  // quando a pessoa clica no ponto do mapa.
+
+  if (reveal) {
+    setTimeout(
+      scrollToFamilyPanel,
+      140
+    );
+  }
 }
 
-// ==========================================
-// 11. RAÍZES DA ÁRVORE
-// ==========================================
+// ========================================
+// 8. RAÍZES DA ÁRVORE
+// ========================================
 
 const rootTips = [
   [.055, .765],
@@ -758,12 +865,8 @@ function buildRoots() {
     `0 0 ${w} ${h}`
   );
 
-  // GRADIENTE DOS FIOS
-
   const defs = svgEl("defs");
-  const gradient = svgEl(
-    "linearGradient"
-  );
+  const gradient = svgEl("linearGradient");
 
   gradient.id = "rootLineGradient";
 
@@ -777,6 +880,7 @@ function buildRoots() {
     ["22%", "#e3f0b4"],
     ["100%", "#c7ff85"]
   ].forEach(([offset, color]) => {
+
     const stop = svgEl("stop");
 
     stop.setAttribute(
@@ -795,9 +899,8 @@ function buildRoots() {
   defs.append(gradient);
   rootsSvg.append(defs);
 
-  // FIOS SAINDO DAS RAÍZES
-
   for (const [fx, fy] of rootTips) {
+
     const a = {
       x: left + imgRect.width * fx,
       y: top + imgRect.height * fy
@@ -839,8 +942,6 @@ function buildRoots() {
     );
   }
 
-  // LINHA CENTRAL ATÉ O MAPA
-
   addPath(
     rootsSvg,
     curve(
@@ -857,14 +958,12 @@ function buildRoots() {
   );
 }
 
-// ==========================================
-// 12. IDENTIFICAR PAÍS PESQUISADO
-// ==========================================
+// ========================================
+// 9. IDENTIFICAR PAÍS DA PESQUISA
+// ========================================
 
 function identifyCountry(data) {
-  if (!data) {
-    return null;
-  }
+  if (!data) return null;
 
   if (
     ["baixa", "desconhecida"].includes(
@@ -879,6 +978,7 @@ function identifyCountry(data) {
   ).trim().toUpperCase();
 
   if (!paises[code] && data.pais) {
+
     const found = Object.entries(
       paises
     ).find(
@@ -893,6 +993,7 @@ function identifyCountry(data) {
   }
 
   if (paises[code]) {
+
     const [name, x, y] = paises[code];
 
     return {
@@ -941,9 +1042,9 @@ function identifyCountry(data) {
   };
 }
 
-// ==========================================
-// 13. DESENHAR MAPA
-// ==========================================
+// ========================================
+// 10. DESENHAR MAPA
+// ========================================
 
 function buildMap() {
   mapSvg.replaceChildren();
@@ -981,17 +1082,14 @@ function buildMap() {
     junction.y
   );
 
-  // ========================================
-  // MODO DE PESQUISA
-  // ========================================
+  // Mostrar rota da pesquisa com Gemini.
 
   if (searchMode) {
+
     const country =
       identifyCountry(searched);
 
-    if (!country) {
-      return;
-    }
+    if (!country) return;
 
     const target = {
       x: w * country.x / 100,
@@ -1005,7 +1103,6 @@ function buildMap() {
 
     pin.style.left = `${country.x}%`;
     pin.style.top = `${country.y}%`;
-
     pin.style.pointerEvents = "none";
 
     searchMarker.append(pin);
@@ -1079,11 +1176,10 @@ function buildMap() {
     return;
   }
 
-  // ========================================
-  // MAPA ORIGINAL COM OS 10 PAÍSES
-  // ========================================
+  // Mostrar os oito países da turma.
 
   familias.forEach((family, index) => {
+
     const country = {
       x: w * family.x / 100,
       y: h * family.y / 100
@@ -1104,9 +1200,9 @@ function buildMap() {
   selectFamily(selectedFamily);
 }
 
-// ==========================================
-// 14. ANIMAÇÃO DOS FIOS NA ROLAGEM
-// ==========================================
+// ========================================
+// 11. ANIMAÇÃO DOS FIOS
+// ========================================
 
 function updateAnimation() {
   const reveal =
@@ -1121,10 +1217,7 @@ function updateAnimation() {
     scrollY;
 
   const elapsed = clamp(
-    (
-      performance.now() -
-      searchStart
-    ) / 2100,
+    (performance.now() - searchStart) / 2100,
     0,
     1
   );
@@ -1154,14 +1247,8 @@ function updateAnimation() {
 
     else if (searchMode) {
       progress = clamp(
-        (
-          elapsed -
-          item.delay
-        ) /
-        Math.max(
-          .01,
-          1 - item.delay
-        ),
+        (elapsed - item.delay) /
+        Math.max(.01, 1 - item.delay),
         0,
         1
       );
@@ -1189,6 +1276,7 @@ function updateAnimation() {
       );
 
     if (item.target) {
+
       const opacity = clamp(
         (progress - .78) / .22,
         0,
@@ -1208,10 +1296,6 @@ function updateAnimation() {
   }
 }
 
-// ==========================================
-// 15. ATUALIZAR ANIMAÇÃO
-// ==========================================
-
 function rebuild() {
   if (
     !rootsImage.complete ||
@@ -1230,9 +1314,7 @@ function rebuild() {
 }
 
 function queueRebuild() {
-  if (rebuildQueued) {
-    return;
-  }
+  if (rebuildQueued) return;
 
   rebuildQueued = true;
 
@@ -1243,9 +1325,7 @@ function queueRebuild() {
 }
 
 function queueAnimation() {
-  if (animationQueued) {
-    return;
-  }
+  if (animationQueued) return;
 
   animationQueued = true;
 
@@ -1269,8 +1349,7 @@ function animateSearch() {
     updateAnimation();
 
     if (
-      performance.now() - started <
-      2300
+      performance.now() - started < 2300
     ) {
       requestAnimationFrame(frame);
     }
@@ -1279,49 +1358,40 @@ function animateSearch() {
   requestAnimationFrame(frame);
 }
 
-// ==========================================
-// 16. ANIMAÇÃO COMPACTA DA PESQUISA
-// ==========================================
+// ========================================
+// 12. ANIMAÇÃO DA PESQUISA
+// ========================================
 
 const loaderStyle = make("style");
 
 loaderStyle.textContent = `
-
-.cepg-loading-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-
-  display: grid;
-  place-items: center;
-
-  padding: 20px;
-
-  background: rgba(5,20,34,.76);
-
-  backdrop-filter: blur(9px);
-  -webkit-backdrop-filter: blur(9px);
-
-  opacity: 0;
-  transition: opacity .28s ease;
+.cepg-loading-layer{
+  position:fixed;
+  inset:0;
+  z-index:9999;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:rgba(5,20,34,.76);
+  backdrop-filter:blur(9px);
+  -webkit-backdrop-filter:blur(9px);
+  opacity:0;
+  transition:opacity .28s ease;
 }
 
-.cepg-loading-layer[hidden] {
-  display: none !important;
+.cepg-loading-layer[hidden]{
+  display:none!important;
 }
 
-.cepg-loading-layer.visible {
-  opacity: 1;
+.cepg-loading-layer.visible{
+  opacity:1;
 }
 
-.cepg-loading-card {
-  width: min(570px,100%);
-
-  padding: 25px 25px 22px;
-
-  border: 1px solid rgba(213,247,164,.29);
-  border-radius: 24px;
-
+.cepg-loading-card{
+  width:min(570px,100%);
+  padding:25px 25px 22px;
+  border:1px solid rgba(213,247,164,.29);
+  border-radius:24px;
   background:
     radial-gradient(
       ellipse at 78% 28%,
@@ -1333,230 +1403,175 @@ loaderStyle.textContent = `
       #142f44,
       #081f33 82%
     );
-
-  color: white;
-  text-align: center;
-
-  box-shadow:
-    0 25px 80px rgba(0,0,0,.38);
+  color:white;
+  text-align:center;
+  box-shadow:0 25px 80px rgba(0,0,0,.38);
 }
 
-.cepg-loading-head {
-  color: #d0e9a6;
-
-  font:
-    800 10px/1.5
-    Manrope,sans-serif;
-
-  letter-spacing: 2px;
+.cepg-loading-head{
+  color:#d0e9a6;
+  font:800 10px/1.5 Manrope,sans-serif;
+  letter-spacing:2px;
 }
 
-.cepg-loading-graphic {
-  width: min(470px,100%);
-  margin: 8px auto;
+.cepg-loading-graphic{
+  width:min(470px,100%);
+  margin:8px auto;
 }
 
-.cepg-loading-graphic svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
+.cepg-loading-graphic svg{
+  display:block;
+  width:100%;
+  height:auto;
+  overflow:visible;
 }
 
-.cepg-loading-root {
-  fill: none;
-
-  stroke: #caef9d;
-  stroke-width: 3;
-
-  stroke-linecap: round;
-
-  stroke-dasharray: 520;
-  stroke-dashoffset: 520;
-
-  animation:
-    cepgRootGrow 6.5s ease-in-out infinite;
+.cepg-loading-root{
+  fill:none;
+  stroke:#caef9d;
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-dasharray:520;
+  stroke-dashoffset:520;
+  animation:cepgRootGrow 6.5s ease-in-out infinite;
 }
 
-.cepg-loading-trail {
-  fill: none;
-
-  stroke: #dcffac;
-  stroke-width: 4;
-
-  stroke-linecap: round;
-
-  stroke-dasharray: 520;
-  stroke-dashoffset: 520;
-
-  filter:
-    drop-shadow(0 0 5px #b3f269);
-
-  animation:
-    cepgTrailGrow 6.5s ease-in-out infinite;
+.cepg-loading-trail{
+  fill:none;
+  stroke:#dcffac;
+  stroke-width:4;
+  stroke-linecap:round;
+  stroke-dasharray:520;
+  stroke-dashoffset:520;
+  filter:drop-shadow(0 0 5px #b3f269);
+  animation:cepgTrailGrow 6.5s ease-in-out infinite;
 }
 
-.cepg-loading-orbit {
-  fill: none;
-
-  stroke: #d5ffa7;
-  stroke-width: 3;
-
-  stroke-linecap: round;
-
-  stroke-dasharray: 380;
-  stroke-dashoffset: 380;
-
-  animation:
-    cepgOrbitDraw 6.5s ease-in-out infinite;
+.cepg-loading-orbit{
+  fill:none;
+  stroke:#d5ffa7;
+  stroke-width:3;
+  stroke-linecap:round;
+  stroke-dasharray:380;
+  stroke-dashoffset:380;
+  animation:cepgOrbitDraw 6.5s ease-in-out infinite;
 }
 
-.cepg-loading-title {
-  font:
-    600 clamp(37px,6vw,51px)/1
-    "Cormorant Garamond",
-    Georgia,serif;
-
-  margin: 5px 0 12px;
+.cepg-loading-title{
+  font:600 clamp(37px,6vw,51px)/1
+    "Cormorant Garamond",Georgia,serif;
+  margin:5px 0 12px;
 }
 
-.cepg-loading-title em {
-  color: #c6e98e;
+.cepg-loading-title em{
+  color:#c6e98e;
 }
 
-.cepg-loading-description {
-  max-width: 410px;
-  margin: 0 auto;
-
-  color: #d2dfdd;
-
-  font:
-    500 12px/1.8
-    Manrope,sans-serif;
+.cepg-loading-description{
+  max-width:410px;
+  margin:0 auto;
+  color:#d2dfdd;
+  font:500 12px/1.8 Manrope,sans-serif;
 }
 
-.cepg-loading-surname {
-  color: #edffcf;
-  font-weight: 800;
+.cepg-loading-surname{
+  color:#edffcf;
+  font-weight:800;
 }
 
-.cepg-loading-stage {
-  margin: 17px auto;
-
-  color: #bbdd9d;
-
-  font:
-    700 11px/1.5
-    Manrope,sans-serif;
+.cepg-loading-stage{
+  margin:17px auto;
+  color:#bbdd9d;
+  font:700 11px/1.5 Manrope,sans-serif;
 }
 
-.cepg-loading-foot {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-
-  margin-top: 18px;
-  padding-top: 16px;
-
-  border-top:
-    1px solid rgba(213,247,164,.19);
+.cepg-loading-foot{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-top:18px;
+  padding-top:16px;
+  border-top:1px solid rgba(213,247,164,.19);
 }
 
-.cepg-loading-note {
-  color: #9db5b5;
-
-  font:
-    500 10px/1.5
-    Manrope,sans-serif;
-
-  text-align: left;
+.cepg-loading-note{
+  color:#9db5b5;
+  font:500 10px/1.5 Manrope,sans-serif;
+  text-align:left;
 }
 
-.cepg-loading-cancel {
-  border: 1px solid rgba(160,189,154,.47);
-  border-radius: 9px;
-
-  padding: 10px 14px;
-
-  background: rgba(239,255,215,.055);
-  color: white;
-
-  font:
-    800 11px
-    Manrope,sans-serif;
-
-  cursor: pointer;
+.cepg-loading-cancel{
+  border:1px solid rgba(160,189,154,.47);
+  border-radius:9px;
+  padding:10px 14px;
+  background:rgba(239,255,215,.055);
+  color:white;
+  font:800 11px Manrope,sans-serif;
+  cursor:pointer;
 }
 
-@keyframes cepgRootGrow {
-  0%,6% {
-    stroke-dashoffset: 520;
-    opacity: .15;
+@keyframes cepgRootGrow{
+  0%,6%{
+    stroke-dashoffset:520;
+    opacity:.15;
   }
-
-  37%,72% {
-    stroke-dashoffset: 0;
-    opacity: 1;
+  37%,72%{
+    stroke-dashoffset:0;
+    opacity:1;
   }
-
-  97%,100% {
-    stroke-dashoffset: 520;
-    opacity: .12;
+  97%,100%{
+    stroke-dashoffset:520;
+    opacity:.12;
   }
 }
 
-@keyframes cepgTrailGrow {
-  0%,32% {
-    stroke-dashoffset: 520;
-    opacity: 0;
+@keyframes cepgTrailGrow{
+  0%,32%{
+    stroke-dashoffset:520;
+    opacity:0;
   }
-
-  61%,77% {
-    stroke-dashoffset: 0;
-    opacity: 1;
+  61%,77%{
+    stroke-dashoffset:0;
+    opacity:1;
   }
-
-  99%,100% {
-    stroke-dashoffset: 520;
-    opacity: 0;
+  99%,100%{
+    stroke-dashoffset:520;
+    opacity:0;
   }
 }
 
-@keyframes cepgOrbitDraw {
-  0%,50% {
-    stroke-dashoffset: 380;
-    opacity: 0;
+@keyframes cepgOrbitDraw{
+  0%,50%{
+    stroke-dashoffset:380;
+    opacity:0;
   }
-
-  76%,85% {
-    stroke-dashoffset: 0;
-    opacity: 1;
+  76%,85%{
+    stroke-dashoffset:0;
+    opacity:1;
   }
-
-  100% {
-    stroke-dashoffset: 380;
-    opacity: 0;
+  100%{
+    stroke-dashoffset:380;
+    opacity:0;
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
+@media(prefers-reduced-motion:reduce){
   .cepg-loading-root,
   .cepg-loading-trail,
-  .cepg-loading-orbit {
-    animation: none;
-    stroke-dashoffset: 0;
-    opacity: 1;
+  .cepg-loading-orbit{
+    animation:none;
+    stroke-dashoffset:0;
+    opacity:1;
   }
 }
-
 `;
 
 document.head.append(loaderStyle);
 
-// ==========================================
-// 17. CRIAR JANELA DE PESQUISA
-// ==========================================
+// ========================================
+// 13. JANELA DE CARREGAMENTO
+// ========================================
 
 const loader = make(
   "div",
@@ -1565,7 +1580,10 @@ const loader = make(
 
 loader.hidden = true;
 
-loader.setAttribute("role", "dialog");
+loader.setAttribute(
+  "role",
+  "dialog"
+);
 
 loader.setAttribute(
   "aria-modal",
@@ -1573,7 +1591,6 @@ loader.setAttribute(
 );
 
 loader.innerHTML = `
-
 <div class="cepg-loading-card">
 
   <div class="cepg-loading-head">
@@ -1582,12 +1599,7 @@ loader.innerHTML = `
 
   <div class="cepg-loading-graphic">
 
-    <svg
-      viewBox="0 0 660 360"
-      aria-hidden="true"
-    >
-
-      <!-- GLOBO -->
+    <svg viewBox="0 0 660 360" aria-hidden="true">
 
       <circle
         cx="520"
@@ -1606,15 +1618,12 @@ loader.innerHTML = `
         stroke-width="2"
       />
 
-      <!-- LINHAS DO GLOBO -->
-
       <g
         fill="none"
         stroke="#93bfa4"
         stroke-width="1.3"
         opacity=".6"
       >
-
         <ellipse
           cx="520"
           cy="176"
@@ -1630,16 +1639,9 @@ loader.innerHTML = `
         />
 
         <path
-          d="
-            M417 176h206
-            M427 126 Q520 158 613 126
-            M427 226 Q520 194 613 226
-          "
+          d="M417 176h206 M427 126 Q520 158 613 126 M427 226 Q520 194 613 226"
         />
-
       </g>
-
-      <!-- RAÍZES CRESCENDO -->
 
       <g class="cepg-loading-root">
 
@@ -1669,33 +1671,22 @@ loader.innerHTML = `
 
       </g>
 
-      <!-- FIO ATÉ O GLOBO -->
-
       <path
         class="cepg-loading-trail"
         d="M258 182 C314 148 368 218 423 179"
       />
-
-      <!-- FIO PERCORRENDO O GLOBO -->
 
       <path
         class="cepg-loading-orbit"
         d="M423 179 C463 100 568 81 614 158 C640 224 577 271 515 257 C461 244 449 184 503 151"
       />
 
-      <!-- PONTO LUMINOSO -->
-
-      <circle
-        r="5"
-        fill="#eaffc1"
-      >
-
+      <circle r="5" fill="#eaffc1">
         <animateMotion
           dur="6.5s"
           repeatCount="indefinite"
           path="M258 182 C314 148 368 218 423 179 C463 100 568 81 614 158 C640 224 577 271 515 257 C461 244 449 184 503 151"
         />
-
       </circle>
 
     </svg>
@@ -1707,13 +1698,9 @@ loader.innerHTML = `
   </h2>
 
   <p class="cepg-loading-description">
-
     Estamos buscando pistas sobre
-
     <strong class="cepg-loading-surname"></strong>
-
     e suas possíveis origens pelo mundo.
-
   </p>
 
   <div class="cepg-loading-stage">
@@ -1736,14 +1723,9 @@ loader.innerHTML = `
   </div>
 
 </div>
-
 `;
 
 document.body.append(loader);
-
-// ==========================================
-// 18. CONTROLAR ANIMAÇÃO DE PESQUISA
-// ==========================================
 
 let loaderInterval = null;
 let loaderToken = 0;
@@ -1762,14 +1744,11 @@ function openLoader(surname) {
 
   clearInterval(loaderInterval);
 
-  previousFocus =
-    document.activeElement;
-
+  previousFocus = document.activeElement;
   previousOverflow =
     document.body.style.overflow;
 
-  document.body.style.overflow =
-    "hidden";
+  document.body.style.overflow = "hidden";
 
   loader.querySelector(
     ".cepg-loading-surname"
@@ -1797,13 +1776,12 @@ function openLoader(surname) {
     loader.querySelector(
       ".cepg-loading-stage"
     ).textContent = stages[index];
+
   }, 2200);
 
   loader.querySelector(
     ".cepg-loading-cancel"
-  ).focus({
-    preventScroll: true
-  });
+  ).focus({ preventScroll: true });
 }
 
 function closeLoader() {
@@ -1817,10 +1795,7 @@ function closeLoader() {
   document.body.style.overflow =
     previousOverflow;
 
-  if (
-    previousFocus &&
-    previousFocus.isConnected
-  ) {
+  if (previousFocus?.isConnected) {
     previousFocus.focus({
       preventScroll: true
     });
@@ -1831,7 +1806,6 @@ function closeLoader() {
       if (token === loaderToken) {
         loader.hidden = true;
       }
-
       resolve();
     }, reducedMotion.matches ? 0 : 290);
   });
@@ -1839,7 +1813,6 @@ function closeLoader() {
 
 async function finishLoader() {
   clearInterval(loaderInterval);
-
   loaderInterval = null;
 
   loader.querySelector(
@@ -1861,127 +1834,292 @@ async function finishLoader() {
   await closeLoader();
 }
 
-// ==========================================
-// 19. CANCELAR PESQUISA
-// ==========================================
+// Cancelar a pesquisa.
 
 loader.querySelector(
   ".cepg-loading-cancel"
 ).addEventListener("click", () => {
+
   requestId++;
 
   activeController?.abort();
-
   activeController = null;
 
   closeLoader();
 
   searchButton.disabled = false;
-
-  searchButton.textContent =
-    "Pesquisar";
+  searchButton.textContent = "Pesquisar";
 
   searchStatus.textContent =
     "Pesquisa cancelada. Você pode tentar novamente.";
 });
 
-document.addEventListener(
-  "keydown",
-  event => {
-    if (
-      event.key === "Escape" &&
-      !loader.hidden &&
-      !loader.querySelector(
-        ".cepg-loading-cancel"
-      ).disabled
-    ) {
-      event.preventDefault();
+document.addEventListener("keydown", event => {
+  if (
+    event.key === "Escape" &&
+    !loader.hidden &&
+    !loader.querySelector(
+      ".cepg-loading-cancel"
+    ).disabled
+  ) {
+    event.preventDefault();
 
-      loader.querySelector(
-        ".cepg-loading-cancel"
-      ).click();
-    }
+    loader.querySelector(
+      ".cepg-loading-cancel"
+    ).click();
   }
-);
+});
 
-// ==========================================
-// 20. CONSULTAR GEMINI PELO NETLIFY
-// ==========================================
+// ========================================
+// 14. PESQUISA DIRETA COM GEMINI
+// ========================================
 
-async function querySurname(
-  name,
-  controller
-) {
+async function querySurname(name, controller) {
+
+  if (
+    !GEMINI_API_KEY ||
+    GEMINI_API_KEY === "COLE_SUA_CHAVE_GEMINI_AQUI"
+  ) {
+    throw new Error(
+      "Configure a chave do Gemini no script.js para ativar a pesquisa."
+    );
+  }
+
   const timeout = setTimeout(() => {
     controller.abort();
-  }, 24000);
+  }, 30000);
+
+  const prompt = `
+Você é um assistente educacional sobre
+a etimologia e a história de sobrenomes.
+
+Analise o sobrenome:
+${JSON.stringify(name)}
+
+Retorne APENAS um objeto JSON válido,
+sem Markdown, contendo estes campos:
+
+{
+  "pais": "",
+  "codigo": "",
+  "confianca": "desconhecida",
+  "explicacao": "",
+  "curiosidade": "",
+  "alternativas": []
+}
+
+REGRAS:
+
+1. Analise a origem histórica ou linguística
+do sobrenome, não a nacionalidade de uma
+pessoa ou de sua família.
+
+2. Se houver associação histórica clara
+com um país, informe seu nome em português
+e o código ISO de duas letras.
+
+3. Se a origem for incerta, deixe pais
+e codigo vazios e use confiança baixa
+ou desconhecida.
+
+4. A confiança deve ser:
+alta, media, baixa ou desconhecida.
+
+5. Escreva a explicação em português,
+com duas a quatro frases claras.
+
+6. Inclua uma curiosidade histórica
+sem inventar acontecimentos.
+
+7. Alternativas deve ser uma lista
+com no máximo três possibilidades.
+
+8. Não invente genealogias, indivíduos,
+datas, brasões ou cidades.
+
+9. Não inclua nada além do JSON.
+`;
 
   try {
+
     const response = await fetch(
-      "/api/sobrenome",
+      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
       {
         method: "POST",
 
         headers: {
-          "Content-Type":
-            "application/json"
+          "Content-Type": "application/json",
+          "x-goog-api-key": GEMINI_API_KEY
         },
 
         body: JSON.stringify({
-          sobrenome: name
+          contents: [
+            {
+              role: "user",
+              parts: [
+                { text: prompt }
+              ]
+            }
+          ],
+
+          generationConfig: {
+            responseMimeType:
+              "application/json",
+
+            maxOutputTokens: 1100,
+            temperature: 0.2
+          }
         }),
 
         signal: controller.signal
       }
     );
 
-    const data = await response
+    const payload = await response
       .json()
       .catch(() => null);
 
     if (!response.ok) {
+
+      if ([400, 401, 403].includes(
+        response.status
+      )) {
+        throw new Error(
+          "O Gemini recusou a chave ou a solicitação. Confira sua chave no Google AI Studio."
+        );
+      }
+
+      if (response.status === 429) {
+        throw new Error(
+          "O limite de pesquisas do Gemini foi atingido. Tente novamente mais tarde."
+        );
+      }
+
+      if (response.status === 404) {
+        throw new Error(
+          "Este modelo do Gemini não está disponível para sua chave."
+        );
+      }
+
       throw new Error(
-        data?.erro ||
-        `Falha na pesquisa (HTTP ${response.status}).`
+        payload?.error?.message ||
+        `Erro ${response.status} ao consultar o Gemini.`
       );
     }
 
-    if (!data) {
+    const responseText = (
+      payload?.candidates?.[0]?.content?.parts || []
+    )
+      .map(part => part?.text || "")
+      .join("")
+      .trim()
+      .replace(/^```(?:json)?\s*/i, "")
+      .replace(/\s*```$/, "");
+
+    if (!responseText) {
       throw new Error(
-        "A pesquisa retornou uma resposta vazia."
+        "O Gemini não retornou informações. Tente novamente."
       );
     }
 
-    return data;
+    let result;
+
+    try {
+      result = JSON.parse(responseText);
+    } catch {
+      throw new Error(
+        "O Gemini retornou uma resposta incompleta. Tente novamente."
+      );
+    }
+
+    if (
+      !result ||
+      typeof result !== "object" ||
+      Array.isArray(result)
+    ) {
+      throw new Error(
+        "O Gemini retornou informações inválidas."
+      );
+    }
+
+    const confianca = normalize(
+      result.confianca || "desconhecida"
+    );
+
+    const confiancasValidas = [
+      "alta",
+      "media",
+      "baixa",
+      "desconhecida"
+    ];
+
+    return {
+      sobrenome: name,
+
+      pais:
+        typeof result.pais === "string"
+          ? result.pais.trim()
+          : "",
+
+      codigo:
+        /^[A-Z]{2}$/.test(
+          String(result.codigo || "")
+            .toUpperCase()
+        )
+          ? String(result.codigo).toUpperCase()
+          : "",
+
+      confianca:
+        confiancasValidas.includes(confianca)
+          ? confianca
+          : "desconhecida",
+
+      explicacao:
+        typeof result.explicacao === "string"
+          ? result.explicacao
+          : "Não há explicação disponível.",
+
+      curiosidade:
+        typeof result.curiosidade === "string"
+          ? result.curiosidade
+          : "Os sobrenomes têm diferentes origens históricas.",
+
+      alternativas:
+        Array.isArray(result.alternativas)
+          ? result.alternativas
+              .filter(s => typeof s === "string")
+              .slice(0, 3)
+          : []
+    };
+
+  } catch (error) {
+
+    if (error instanceof TypeError) {
+      throw new Error(
+        "Não foi possível conectar ao Gemini. Verifique sua internet e a API."
+      );
+    }
+
+    throw error;
 
   } finally {
     clearTimeout(timeout);
   }
 }
 
-// ==========================================
-// 21. LINKS PARA PESQUISAR MAIS
-// ==========================================
+// ========================================
+// 15. EXIBIR RESULTADO DA PESQUISA
+// ========================================
 
 function addSource(label, url) {
-  const link = make(
-    "a",
-    "",
-    label
-  );
+  const link = make("a", "", label);
 
   link.href = url;
-
   link.target = "_blank";
-
   link.rel = "noopener noreferrer";
 
   $("sourceLinks").append(link);
 }
-
-// ==========================================
-// 22. MOSTRAR RESULTADO DE SOBRENOME
-// ==========================================
 
 function showResult(data, manual = false) {
   searched = data;
@@ -2074,14 +2212,15 @@ function showResult(data, manual = false) {
   });
 }
 
-// ==========================================
-// 23. TEMPO MÍNIMO DE 5 SEGUNDOS
-// ==========================================
+// ========================================
+// 16. CARREGAMENTO MÍNIMO DE 5 SEGUNDOS
+// ========================================
 
 const MIN_LOADING_MS = 5000;
 
 function minimumLoadingTime(signal) {
   return new Promise((resolve, reject) => {
+
     if (signal.aborted) {
       reject(
         new DOMException(
@@ -2089,21 +2228,17 @@ function minimumLoadingTime(signal) {
           "AbortError"
         )
       );
-
       return;
     }
 
-    const timer = setTimeout(
-      () => {
-        signal.removeEventListener(
-          "abort",
-          onAbort
-        );
+    const timer = setTimeout(() => {
+      signal.removeEventListener(
+        "abort",
+        onAbort
+      );
 
-        resolve();
-      },
-      MIN_LOADING_MS
-    );
+      resolve();
+    }, MIN_LOADING_MS);
 
     function onAbort() {
       clearTimeout(timer);
@@ -2129,13 +2264,14 @@ function minimumLoadingTime(signal) {
   });
 }
 
-// ==========================================
-// 24. FORMULÁRIO DE PESQUISA
-// ==========================================
+// ========================================
+// 17. FORMULÁRIO DE SOBRENOMES
+// ========================================
 
 searchForm.addEventListener(
   "submit",
   async event => {
+
     event.preventDefault();
 
     const name = surnameInput.value
@@ -2145,7 +2281,6 @@ searchForm.addEventListener(
     if (name.length < 2) {
       searchStatus.textContent =
         "Digite ao menos duas letras.";
-
       return;
     }
 
@@ -2157,7 +2292,6 @@ searchForm.addEventListener(
     activeController = controller;
 
     searchButton.disabled = true;
-
     searchButton.textContent =
       "Pesquisando...";
 
@@ -2167,6 +2301,7 @@ searchForm.addEventListener(
     openLoader(name);
 
     try {
+
       const [data] = await Promise.all([
         querySurname(name, controller),
         minimumLoadingTime(
@@ -2174,15 +2309,11 @@ searchForm.addEventListener(
         )
       ]);
 
-      if (current !== requestId) {
-        return;
-      }
+      if (current !== requestId) return;
 
       await finishLoader();
 
-      if (current !== requestId) {
-        return;
-      }
+      if (current !== requestId) return;
 
       showResult({
         ...data,
@@ -2190,15 +2321,12 @@ searchForm.addEventListener(
       });
 
     } catch (error) {
-      if (current !== requestId) {
-        return;
-      }
+
+      if (current !== requestId) return;
 
       await closeLoader();
 
-      if (current !== requestId) {
-        return;
-      }
+      if (current !== requestId) return;
 
       searchStatus.textContent =
         error.name === "AbortError"
@@ -2206,11 +2334,11 @@ searchForm.addEventListener(
           : error.message;
 
     } finally {
+
       if (current === requestId) {
         activeController = null;
 
         searchButton.disabled = false;
-
         searchButton.textContent =
           "Pesquisar";
       }
@@ -2218,17 +2346,17 @@ searchForm.addEventListener(
   }
 );
 
-// ==========================================
-// 25. VOLTAR AO MAPA DA TURMA
-// ==========================================
+// ========================================
+// 18. VOLTAR AO MAPA DA TURMA
+// ========================================
 
 resetButton.addEventListener(
   "click",
   () => {
+
     requestId++;
 
     activeController?.abort();
-
     activeController = null;
 
     if (!loader.hidden) {
@@ -2244,7 +2372,6 @@ resetButton.addEventListener(
       "Digite um sobrenome para começar.";
 
     searchButton.disabled = false;
-
     searchButton.textContent =
       "Pesquisar";
 
@@ -2271,9 +2398,9 @@ resetButton.addEventListener(
   }
 );
 
-// ==========================================
-// 26. SELECIONAR PAÍS MANUALMENTE
-// ==========================================
+// ========================================
+// 19. ESCOLHER PAÍS MANUALMENTE
+// ========================================
 
 Object.entries(paises)
   .sort(
@@ -2284,6 +2411,7 @@ Object.entries(paises)
       )
   )
   .forEach(([code, details]) => {
+
     const option = make(
       "option",
       "",
@@ -2295,9 +2423,9 @@ Object.entries(paises)
     $("manualCountry").append(option);
   });
 
-$("manualCountryButton").addEventListener(
-  "click",
-  () => {
+$("manualCountryButton")
+  .addEventListener("click", () => {
+
     const code =
       $("manualCountry").value;
 
@@ -2318,20 +2446,18 @@ $("manualCountryButton").addEventListener(
       },
       true
     );
-  }
-);
+  });
 
-// ==========================================
-// 27. MENU DO CELULAR
-// ==========================================
+// ========================================
+// 20. MENU DO CELULAR
+// ========================================
 
 menuToggle.addEventListener(
   "click",
   () => {
+
     const open =
-      navMenu.classList.toggle(
-        "open"
-      );
+      navMenu.classList.toggle("open");
 
     menuToggle.setAttribute(
       "aria-expanded",
@@ -2349,12 +2475,12 @@ menuToggle.addEventListener(
 
 navMenu.querySelectorAll("a")
   .forEach(link => {
+
     link.addEventListener(
       "click",
       () => {
-        navMenu.classList.remove(
-          "open"
-        );
+
+        navMenu.classList.remove("open");
 
         menuToggle.setAttribute(
           "aria-expanded",
@@ -2369,9 +2495,9 @@ navMenu.querySelectorAll("a")
     );
   });
 
-// ==========================================
-// 28. EVENTOS DA PÁGINA
-// ==========================================
+// ========================================
+// 21. EVENTOS E INICIALIZAÇÃO
+// ========================================
 
 window.addEventListener(
   "scroll",
@@ -2413,10 +2539,98 @@ if ("ResizeObserver" in window) {
   observer.observe(mapStage);
 }
 
-// ==========================================
-// 29. INICIAR SITE
-// ==========================================
-
 buildMarkers();
 selectFamily(0);
 queueRebuild();
+
+
+
+/* Colocar a pesquisa de sobrenomes depois do mapa */
+const secaoPesquisa = document.getElementById("pesquisa");
+const secaoMapa = document.querySelector(".journey");
+
+if (secaoPesquisa && secaoMapa) {
+  secaoMapa.insertAdjacentElement("afterend", secaoPesquisa);
+  queueRebuild();
+}
+
+
+/* ==========================================
+   BOTÃO PARA SAIR DA PESQUISA NO MAPA
+========================================== */
+
+const estiloVoltarMapa = document.createElement("style");
+
+estiloVoltarMapa.textContent = `
+  .cepg-voltar-mapa {
+    display: none;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+
+    padding: 12px 18px;
+    border: 1px solid rgba(210, 245, 177, .65);
+    border-radius: 12px;
+
+    background: rgba(13, 42, 60, .95);
+    color: #efffd8;
+
+    font-family: Manrope, sans-serif;
+    font-size: 12px;
+    font-weight: 800;
+
+    box-shadow: 0 6px 22px rgba(0, 0, 0, .3);
+    cursor: pointer;
+
+    transition: background .2s, transform .2s;
+  }
+
+  .map-stage.searching .cepg-voltar-mapa {
+    display: block;
+  }
+
+  .cepg-voltar-mapa:hover {
+    background: #284f49;
+    transform: translateY(-2px);
+  }
+
+  .cepg-voltar-mapa:focus-visible {
+    outline: 3px solid #d6ffa4;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 620px) {
+    .cepg-voltar-mapa {
+      top: 8px;
+      right: 8px;
+      padding: 9px 11px;
+      font-size: 10px;
+      border-radius: 9px;
+    }
+  }
+`;
+
+document.head.appendChild(estiloVoltarMapa);
+
+const botaoVoltarMapa = document.createElement("button");
+
+botaoVoltarMapa.type = "button";
+botaoVoltarMapa.className = "cepg-voltar-mapa";
+botaoVoltarMapa.textContent = "← Voltar ao mapa da turma";
+
+botaoVoltarMapa.addEventListener("click", () => {
+  // Reutiliza a função de voltar que já existe no site.
+  resetButton.click();
+
+  // Mantém o visitante na área do mapa.
+  requestAnimationFrame(() => {
+    document.getElementById("mapa").scrollIntoView({
+      behavior: reducedMotion.matches ? "auto" : "smooth",
+      block: "start"
+    });
+  });
+});
+
+// Posiciona o botão dentro do mapa.
+mapStage.appendChild(botaoVoltarMapa);

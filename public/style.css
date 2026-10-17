@@ -1360,3 +1360,8 @@ p {
     transform: translateY(-40px);
   }
 }
+
+#selectedDescription,
+#familyPanel .demo-notice {
+  display: none !important;
+}
