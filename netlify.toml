@@ -1,0 +1,20 @@
+
+# CONFIGURAÇÃO DO SITE CEPG
+
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# AMBIENTE DE DESENVOLVIMENTO
+
+[dev]
+  port = 8888
+  publish = "public"
+
+# ENCAMINHAR A PESQUISA PARA A FUNÇÃO
+
+[[redirects]]
+  from = "/api/sobrenome"
+  to = "/.netlify/functions/sobrenome"
+  status = 200
+  force = true

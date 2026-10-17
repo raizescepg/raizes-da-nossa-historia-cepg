@@ -1,0 +1,883 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta name="theme-color" content="#102c43">
+
+  <meta
+    name="description"
+    content="Raízes da Nossa História — Projeto genealógico do CEPG. Conheça as origens das famílias da turma e pesquise a história do seu sobrenome."
+  >
+
+  <title>Raízes da Nossa História | CEPG</title>
+
+  <!-- FONTES DO SITE ORIGINAL -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- CSS ORIGINAL -->
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- JAVASCRIPT -->
+
+  <script src="script.js" defer></script>
+
+</head>
+
+<body>
+
+  <!-- ======================================
+       CABEÇALHO
+  ======================================= -->
+
+  <header class="header">
+
+    <div class="container nav-bar">
+
+      <!-- LOGO -->
+
+      <a
+        href="#inicio"
+        class="brand"
+        aria-label="Raízes CEPG - Voltar ao início"
+      >
+
+        <img
+          src="IMAGENS/logo-cepg1.png"
+          alt="Logo do CEPG"
+        >
+
+        <span>
+          RAÍZES <strong>CEPG</strong>
+        </span>
+
+      </a>
+
+      <!-- MENU -->
+
+      <nav
+        class="nav-links"
+        id="navMenu"
+        aria-label="Menu principal"
+      >
+
+        <a href="#inicio">
+          Início
+        </a>
+
+        <a href="#historia">
+          Nossa história
+        </a>
+
+      
+
+        <a href="#mapa">
+          Mapa das origens
+        </a>
+
+        <a
+          class="nav-social"
+          href="https://www.instagram.com/terceirao_cepg26/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram da turma
+        </a>
+
+      </nav>
+
+      <!-- BOTÃO PRINCIPAL -->
+
+      <a
+        class="nav-cta"
+        href="#pesquisa"
+      >
+        Descobrir origem
+      </a>
+
+      <!-- MENU MOBILE -->
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-controls="navMenu"
+        aria-expanded="false"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+
+  </header>
+
+  <main>
+
+    <!-- ======================================
+         CAPÍTULO INICIAL
+    ======================================= -->
+
+    <section class="hero" id="inicio">
+
+      <div class="container hero-grid">
+
+        <!-- CONTEÚDO -->
+
+        <div class="hero-content">
+
+          <span class="eyebrow">
+            PROJETO GENEALÓGICO · CEPG 2026
+          </span>
+
+          <h1>
+            Nossas raízes.<br>
+            <em>Nossa história.</em>
+          </h1>
+
+          <p>
+            Cada família carrega uma história.
+            Cada sobrenome guarda lembranças,
+            caminhos e origens que fazem parte
+            de quem somos.
+          </p>
+
+          <p>
+            Explore as raízes da nossa turma e
+            descubra como diferentes histórias
+            se conectam pelo mundo.
+          </p>
+
+          <!-- BOTÕES -->
+
+          <div class="hero-actions">
+
+            <a
+              class="btn btn-main"
+              href="#historia"
+            >
+
+              Explorar nossas raízes
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M5 12h14"></path>
+                <path d="m13 6 6 6-6 6"></path>
+              </svg>
+
+            </a>
+
+            <a
+              class="btn btn-light"
+              href="#pesquisa"
+            >
+              Pesquisar sobrenome
+            </a>
+
+          </div>
+
+          <!-- REDES SOCIAIS -->
+
+          <div
+            class="social-strip"
+            aria-label="Redes sociais do projeto"
+          >
+
+            <span>
+              ACOMPANHE NOSSA HISTÓRIA
+            </span>
+
+            <a
+              href="https://www.instagram.com/peresguimaraes.cepg/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram da escola CEPG"
+            >
+
+              Instagram da escola
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M7 17 17 7"></path>
+                <path d="M8 7h9v9"></path>
+              </svg>
+
+            </a>
+
+            <a
+              href="https://www.instagram.com/terceirao_cepg26/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram do Terceirão CEPG 2026"
+            >
+
+              Instagram do Terceirão
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M7 17 17 7"></path>
+                <path d="M8 7h9v9"></path>
+              </svg>
+
+            </a>
+
+          </div>
+
+        </div>
+
+        <!-- ÁRVORE PRINCIPAL ORIGINAL -->
+
+        <div class="hero-art">
+
+          <img
+            src="IMAGENS/arvore-principal.png"
+            alt="Árvore com folhas e raízes representando a história das famílias"
+            loading="eager"
+          >
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ======================================
+         CAPÍTULO 01 — NOSSA HISTÓRIA
+    ======================================= -->
+
+    <section class="intro" id="historia">
+
+      <div class="container intro-inner">
+
+        <span class="eyebrow">
+          CAPÍTULO 01 · AS RAÍZES
+        </span>
+
+        <h2>
+          Toda história começa<br>
+          <em>em algum lugar.</em>
+        </h2>
+
+        <p>
+          As raízes de uma árvore representam
+          nossas origens e as gerações que vieram
+          antes de nós.
+        </p>
+
+        <p>
+          Assim como elas se espalham pela terra,
+          nossas famílias percorreram diferentes
+          caminhos até que suas histórias se
+          encontrassem.
+        </p>
+
+      </div>
+
+    </section>
+
+    <!-- ======================================
+         PESQUISA DE SOBRENOMES
+    ======================================= -->
+
+    <section
+      class="search-section"
+      id="pesquisa"
+    >
+
+      <div class="container search-card">
+
+        <!-- APRESENTAÇÃO -->
+
+        <div class="search-copy">
+
+          <span class="eyebrow">
+            DESCUBRA SUAS ORIGENS
+          </span>
+
+          <h2>
+            Qual é a história<br>
+            do seu <em>sobrenome?</em>
+          </h2>
+
+          <p>
+            Digite seu sobrenome para conhecer
+            possíveis origens históricas,
+            significados e curiosidades.
+          </p>
+
+          <p>
+            Quando uma origem for identificada
+            com confiança suficiente, uma linha
+            animada mostrará o país no mapa.
+          </p>
+
+        </div>
+
+        <!-- FORMULÁRIO DE PESQUISA -->
+
+        <form
+          class="search-form"
+          id="searchForm"
+        >
+
+          <label for="surnameInput">
+            DIGITE SEU SOBRENOME
+          </label>
+
+          <div class="search-controls">
+
+            <input
+              id="surnameInput"
+              type="text"
+              name="sobrenome"
+              maxlength="70"
+              placeholder="Ex.: Fagundes, Basso, Tanaka"
+              autocomplete="family-name"
+              required
+            >
+
+            <button
+              id="searchButton"
+              type="submit"
+            >
+              Pesquisar
+            </button>
+
+          </div>
+
+          <!-- STATUS DA PESQUISA -->
+
+          <p
+            id="searchStatus"
+            role="status"
+            aria-live="polite"
+          >
+            Digite um sobrenome para começar.
+          </p>
+
+          <!-- RETORNAR AO MAPA DA TURMA -->
+
+          <button
+            class="reset-button"
+            id="resetButton"
+            type="button"
+            hidden
+          >
+            Voltar ao mapa da turma
+          </button>
+
+        </form>
+
+      </div>
+
+      <!-- AVISO -->
+
+      <p class="container search-disclaimer">
+        As respostas são geradas por inteligência
+        artificial. A origem de um sobrenome não
+        comprova a ancestralidade de uma pessoa.
+      </p>
+
+    </section>
+
+    <!-- ======================================
+         RAÍZES E MAPA ORIGINAL
+    ======================================= -->
+
+    <section
+      class="journey"
+      aria-label="Raízes e mapa das origens"
+    >
+
+      <div class="container">
+
+        <!-- ==================================
+             RAÍZES DA ÁRVORE
+        =================================== -->
+
+        <div
+          class="roots-scene"
+          id="rootsScene"
+        >
+
+          <div class="roots-art">
+
+            <img
+              id="rootsImage"
+              src="IMAGENS/raizes.png"
+              alt="Raízes ilustradas da árvore"
+              loading="eager"
+            >
+
+          </div>
+
+          <!-- ANIMAÇÃO DOS FIOS DAS RAÍZES -->
+
+          <div
+            class="roots-flow"
+            id="rootsFlow"
+            aria-hidden="true"
+          >
+
+            <svg
+              id="rootsSvg"
+              class="roots-svg"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            ></svg>
+
+          </div>
+
+        </div>
+
+        <!-- ==================================
+             MAPA-MÚNDI
+        =================================== -->
+
+        <div
+          class="map-viewport"
+          id="mapa"
+          tabindex="0"
+          aria-label="Mapa interativo das origens familiares"
+        >
+
+          <div
+            class="map-stage"
+            id="mapStage"
+          >
+
+            <!-- IMAGEM ORIGINAL DO MAPA -->
+
+            <img
+              class="map-art"
+              src="IMAGENS/mapa-mundi.png"
+              alt="Mapa-múndi ilustrado"
+              loading="eager"
+            >
+
+            <!-- FIOS VERDES ANIMADOS -->
+
+            <svg
+              class="map-svg"
+              id="mapSvg"
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+            ></svg>
+
+            <!-- PONTOS DOS PAÍSES DA TURMA -->
+
+            <div
+              class="country-pins"
+              id="countryPins"
+            ></div>
+
+            <!-- ELEMENTOS DO MAPA -->
+
+            <div
+              class="family-names"
+              id="familyNames"
+            ></div>
+
+            <!-- MARCADOR DA PESQUISA -->
+
+            <div
+              class="search-marker"
+              id="searchMarker"
+            ></div>
+
+          </div>
+
+        </div>
+
+        <!-- INSTRUÇÕES -->
+
+        <p
+          class="map-hint"
+          id="mapHint"
+        >
+          Selecione um ponto ou um nome abaixo do mapa
+          para conhecer as origens e localidades
+          informadas pela turma.
+        </p>
+
+        <!-- ==================================
+             CAPÍTULO 02 — MAPA
+        =================================== -->
+
+        <div class="map-content">
+
+          <span class="eyebrow">
+            CAPÍTULO 02 · NOSSAS ORIGENS
+          </span>
+
+          <h2 id="mapTitle">
+            Um mundo de <em>histórias.</em>
+          </h2>
+
+          <p id="mapSubtitle">
+            Diferentes caminhos, diferentes origens.
+            Uma história que construímos juntos.
+          </p>
+
+          <!-- ==================================
+               INFORMAÇÕES DAS FAMÍLIAS
+          =================================== -->
+
+          <section
+            class="info-panel"
+            id="familyPanel"
+            aria-label="Informações das famílias da turma"
+          >
+
+            <!-- BOTÕES DOS PAÍSES -->
+
+            <div
+              class="country-buttons"
+              id="countryButtons"
+            ></div>
+
+            <div class="info-grid">
+
+              <!-- ORIGEM SELECIONADA -->
+
+              <div>
+
+                <span class="eyebrow">
+                  ORIGEM SELECIONADA
+                </span>
+
+                <h3 id="selectedCountry"></h3>
+
+                <p id="selectedDescription"></p>
+
+              </div>
+
+              <!-- LOCALIDADES E REGISTROS -->
+
+              <div>
+
+                <span class="eyebrow">
+                  LOCALIDADES E REGISTROS
+                </span>
+
+                <div
+                  class="selected-names"
+                  id="selectedNames"
+                ></div>
+
+              </div>
+
+            </div>
+
+            <!-- INFORMAÇÃO SOBRE OS DADOS -->
+
+            <p class="demo-notice">
+              As origens e localidades exibidas
+              foram informadas no levantamento
+              da turma. Os pontos no mapa são
+              aproximados e não representam
+              endereços familiares. Bessarábia
+              é uma região histórica, indicada
+              aqui pela área aproximada da
+              Moldávia atual.
+            </p>
+
+          </section>
+
+          <!-- ==================================
+               RESULTADO DA PESQUISA COM IA
+          =================================== -->
+
+          <section
+            class="info-panel result-panel"
+            id="resultPanel"
+            aria-label="Resultado da pesquisa de sobrenome"
+            hidden
+          >
+
+            <!-- CABEÇALHO -->
+
+            <div class="result-top">
+
+              <span class="eyebrow">
+                SOBRENOME PESQUISADO
+              </span>
+
+              <span
+                class="confidence-badge"
+                id="confidenceBadge"
+              ></span>
+
+            </div>
+
+            <!-- SOBRENOME -->
+
+            <h3 id="resultSurname"></h3>
+
+            <div class="result-grid">
+
+              <!-- HISTÓRIA DO SOBRENOME -->
+
+              <div>
+
+                <h4>
+                  Possível país de origem
+                </h4>
+
+                <p id="resultCountry"></p>
+
+                <h4>
+                  História e significado
+                </h4>
+
+                <p id="resultExplanation"></p>
+
+              </div>
+
+              <!-- CURIOSIDADES -->
+
+              <aside class="curiosity">
+
+                <strong>
+                  VOCÊ SABIA?
+                </strong>
+
+                <p id="resultCuriosity"></p>
+
+              </aside>
+
+            </div>
+
+            <!-- OUTRAS ORIGENS -->
+
+            <div
+              class="other-origins"
+              id="otherOrigins"
+              hidden
+            ></div>
+
+            <!-- FONTES COMPLEMENTARES -->
+
+            <div
+              class="source-links"
+              id="sourceLinks"
+            ></div>
+
+            <!-- AVISO -->
+
+            <p class="result-disclaimer">
+              Esta explicação é gerada por IA
+              e não substitui documentos históricos
+              nem pesquisas genealógicas.
+            </p>
+
+            <!-- ==================================
+                 PAÍS INFORMADO PELO VISITANTE
+            =================================== -->
+
+            <div
+              class="manual-box"
+              id="manualCountryBox"
+              hidden
+            >
+
+              <label for="manualCountry">
+                Você sabe de qual país
+                veio sua família?
+              </label>
+
+              <div class="search-controls">
+
+                <select id="manualCountry">
+
+                  <option value="">
+                    Selecione um país...
+                  </option>
+
+                </select>
+
+                <button
+                  id="manualCountryButton"
+                  type="button"
+                >
+                  Mostrar no mapa
+                </button>
+
+              </div>
+
+              <small>
+                O país selecionado será informado
+                pelo visitante. Ele não representa
+                uma conclusão da inteligência
+                artificial.
+              </small>
+
+            </div>
+
+          </section>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ======================================
+         ENCERRAMENTO
+    ======================================= -->
+
+    <section class="ending">
+
+      <div class="container ending-inner">
+
+        <span class="eyebrow">
+          NOSSA HISTÓRIA CONTINUA
+        </span>
+
+        <h2>
+          Raízes diferentes.<br>
+          <em>Histórias que se encontram.</em>
+        </h2>
+
+        <p>
+          Conhecer de onde viemos é valorizar
+          as gerações que fizeram parte da
+          nossa história e os caminhos que
+          nos trouxeram até aqui.
+        </p>
+
+        <div class="ending-actions">
+
+          <a
+            class="btn btn-main"
+            href="#inicio"
+          >
+            Voltar ao início
+          </a>
+
+          <a
+            class="btn btn-outline"
+            href="https://www.instagram.com/terceirao_cepg26/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Conheça o Terceirão 2026
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ======================================
+       RODAPÉ ORIGINAL
+  ======================================= -->
+
+  <footer class="footer">
+
+    <div class="container footer-inner">
+
+      <!-- IDENTIDADE -->
+
+      <div class="footer-brand">
+
+        <img
+          src="IMAGENS/logo-cepg1.png"
+          alt="Logo do CEPG"
+        >
+
+        <div>
+
+          <strong>
+            RAÍZES DA NOSSA HISTÓRIA
+          </strong>
+
+          <p>
+            Projeto genealógico CEPG · 2026
+          </p>
+
+        </div>
+
+      </div>
+
+      <!-- REDES SOCIAIS -->
+
+      <div class="footer-links">
+
+        <a
+          href="https://www.instagram.com/peresguimaraes.cepg/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram da escola
+        </a>
+
+        <a
+          href="https://www.instagram.com/terceirao_cepg26/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Instagram do Terceirão
+        </a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+
+</html>
