@@ -8,7 +8,7 @@
 
 // Coloque sua chave somente no seu computador.
 // Atenção: no GitHub Pages ela ficará pública.
-const GEMINI_API_KEY = "AQ.Ab8RN6Kd54qd2kFLByPfIgdU2l-CS3sVkDDoldeWJM6Mju7mNQ";
+const GEMINI_API_KEY = "AQ.Ab8RN6IgVcqkTRtY0IU5nKIDdldC8x8yIY2nSGh5xiorLF0DUQ";
 const GEMINI_MODEL = "gemini-3.5-flash-lite";
 
 // ========================================
@@ -16,7 +16,7 @@ const GEMINI_MODEL = "gemini-3.5-flash-lite";
 // ========================================
 
 const familias = [
-  {
+  { 
     pais: "Portugal",
     codigo: "PT",
     bandeira: "🇵🇹",
