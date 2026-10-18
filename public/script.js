@@ -8,7 +8,7 @@
 
 // Coloque sua chave somente no seu computador.
 // Atenção: no GitHub Pages ela ficará pública.
-const GEMINI_API_KEY = "AQ.Ab8RN6KirLADx_R5QvzjiCog2q43_J3xUDP0MTKuJeFxaNJliA";
+const GEMINI_API_KEY = "AQ.Ab8RN6I2jQh_bvNNL5nTo1EF8cMNdPP0XptJF0NPFnCWxijyjA";
 const GEMINI_MODEL = "gemini-3.5-flash-lite";
 
 // ========================================
