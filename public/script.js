@@ -6,17 +6,17 @@
 // MAPA COM SOBRENOMES REAIS DA TURMA
 // ========================================
 
-// Coloque sua chave somente no seu computador.
-// Atenção: no GitHub Pages ela ficará pública.
-const GEMINI_API_KEY = "AQ.Ab8RN6I2jQh_bvNNL5nTo1EF8cMNdPP0XptJF0NPFnCWxijyjA";
-const GEMINI_MODEL = "gemini-3.5-flash-lite";
+// A chave do Gemini fica guardada no Cloudflare Workers,
+// nunca neste arquivo público do GitHub Pages.
+const GEMINI_WORKER_URL =
+  "https://cepg-gemini.rogeriobasso120908.workers.dev/pesquisar";
 
 // ========================================
 // 1. SOBRENOMES INFORMADOS PELA TURMA
 // ========================================
 
 const familias = [
-  { 
+  {
     pais: "Portugal",
     codigo: "PT",
     bandeira: "🇵🇹",
@@ -1871,19 +1871,10 @@ document.addEventListener("keydown", event => {
 });
 
 // ========================================
-// 14. PESQUISA DIRETA COM GEMINI
+// 14. PESQUISA COM GEMINI VIA CLOUDFLARE
 // ========================================
 
 async function querySurname(name, controller) {
-
-  if (
-    !GEMINI_API_KEY ||
-    GEMINI_API_KEY === "COLE_SUA_CHAVE_GEMINI_AQUI"
-  ) {
-    throw new Error(
-      "Configure a chave do Gemini no script.js para ativar a pesquisa."
-    );
-  }
 
   const timeout = setTimeout(() => {
     controller.abort();
@@ -1943,13 +1934,12 @@ datas, brasões ou cidades.
   try {
 
     const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`,
+      GEMINI_WORKER_URL,
       {
         method: "POST",
 
         headers: {
-          "Content-Type": "application/json",
-          "x-goog-api-key": GEMINI_API_KEY
+          "Content-Type": "application/json"
         },
 
         body: JSON.stringify({
@@ -1985,7 +1975,10 @@ datas, brasões ou cidades.
         response.status
       )) {
         throw new Error(
-          "O Gemini recusou a chave ou a solicitação. Confira sua chave no Google AI Studio."
+          (typeof payload?.error === "string"
+            ? payload.error
+            : payload?.error?.message) ||
+          "O serviço de pesquisa recusou a solicitação. Tente novamente."
         );
       }
 
@@ -1997,12 +1990,14 @@ datas, brasões ou cidades.
 
       if (response.status === 404) {
         throw new Error(
-          "Este modelo do Gemini não está disponível para sua chave."
+          "A pesquisa não está disponível. Confira o endereço do Cloudflare Worker."
         );
       }
 
       throw new Error(
-        payload?.error?.message ||
+        (typeof payload?.error === "string"
+          ? payload.error
+          : payload?.error?.message) ||
         `Erro ${response.status} ao consultar o Gemini.`
       );
     }
@@ -2096,7 +2091,7 @@ datas, brasões ou cidades.
 
     if (error instanceof TypeError) {
       throw new Error(
-        "Não foi possível conectar ao Gemini. Verifique sua internet e a API."
+        "Não foi possível conectar ao Cloudflare. Verifique sua internet."
       );
     }
 
